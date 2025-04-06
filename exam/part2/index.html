@@ -54,9 +54,16 @@
 
 
                     <!-- Footer -->
-                    <div class="mt-auto border-t">
-                        <div>Total: </div> 
-                        <input class="max-w-full border rounded" type="number" placeholder="Payment">
+                    <div class="mt-auto border-t space-y-4 p-4">
+                        <div id="orderTotal" class="text-2xl">Total: </div>
+                        <form action="#" name="myForm" onsubmit="payment(event, this)" class="space-y-2">
+                            <div class="flex flex-col items-end gap-2">
+                                <input class="w-full border rounded" name="myPayment" type="number" placeholder="Payment" min="1" required>
+                                <button type="submit" class="bg-green-600 rounded-md text-white text-sm px-2 py-1 hover:bg-green-700">Pay!</button>
+                            </div>
+                            
+                        </form>
+                        
                     </div>
                     <!-- /Footer -->
 
@@ -76,14 +83,14 @@
         <script>
             // Menu item names and prices plus images
             const menuItems = [
-                {name:'Grilled Garlic Butter Lobster', price:'$29.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Crispy Calamari Rings', price:'$12.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Seaside Shrimp Skewers', price:'$16.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Golden Battered Fish & Chips', price:'$14.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Spicy Cajun Crab Boil', price:'$32.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Garlic Parmesan Scallops', price:'$24.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Miso-Glazed Salmon Steak', price:'$21.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
-                {name:'Seafood Paella', price:'$27.99', image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'}
+                {name:'Mini Fish & Chips', price: 169, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Shrimp Tempura Basket', price: 249, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Tuna Sisig', price: 179, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Garlic Butter Mussels', price: 229, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Seafood Lumpia', price: 149, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Spicy Squid Rice Bowl', price: 189, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Bangus Belly Sinigang', price: 199, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Grilled Tilapia with Ensalada', price: 259, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'}
             ];
 
             // Create menu
@@ -108,13 +115,14 @@
                 
                 // price
                 const itemPrice = document.createElement('h1');
-                itemPrice.textContent = menuItems[i].price;
+                itemPrice.textContent = menuItems[i].price + ' PHP';
 
                 // quantity
                 const itemInput = document.createElement('input')
                 itemInput.classList.add('w-full', 'border', 'rounded');
                 itemInput.type = 'number';
                 itemInput.placeholder = 'Enter how many';
+                itemInput.min = 0;
 
                 // order button
                 const orderItem = document.createElement('div');  // container
@@ -125,7 +133,7 @@
                 orderButton.textContent = 'Add to order';
 
                 const orderDetails = menuItems[i];
-                orderButton.onclick = function() {addOrder(orderDetails)};  // assign button values
+                orderButton.onclick = function() {addOrder(orderDetails, itemInput.value)};
 
 
                 // place button inside its container
@@ -146,34 +154,59 @@
             }
 
 
-            function addOrder(item) {
-                const container = document.querySelector('#receipt');
+            const orderPrices = [];
+            function addOrder(item, orderQuantity) {
+                const invoice = document.querySelector('#receipt');
                 const newItem = document.createElement('div');
                 const itemName = document.createElement('div');
                 const itemQuanti = document.createElement('div');
 
-                // Add text
-                itemName.appendChild(document.createTextNode(item.name)); // get name
-                itemQuanti.appendChild(document.createTextNode(item.price)); // get quantity
+                if (orderQuantity > 0) {
+                    // Create text
+                    itemName.appendChild(document.createTextNode(item.name));
+                    itemName.classList.add('text-left', 'text-xl');
 
-                // Customize text
-                itemName.classList.add('text-left', 'text-xl');
-                itemQuanti.classList.add('text-right', 'text-lg', 'text-green-600');
+                    itemQuanti.appendChild(document.createTextNode('Qty: ' + orderQuantity));
+                    itemQuanti.classList.add('text-right', 'text-lg', 'text-green-600');
 
-                // Add text nodes
-                newItem.appendChild(itemName);
-                newItem.appendChild(itemQuanti);
+                    // Put text in container
+                    newItem.appendChild(itemName);
+                    newItem.appendChild(itemQuanti);
+                    newItem.classList.add('flex', 'flex-col', 'justify-center', 'border', 'rounded-md', 'w-full', 'h-auto', 'p-3');
 
-                // Customize new item
-                newItem.classList.add('flex', 'flex-col', 'justify-center', 'border', 'rounded-md', 'w-full', 'h-auto', 'p-3');
+                    // Add new item
+                    invoice.appendChild(newItem);
 
-                // Add new item
-                container.appendChild(newItem);
+
+                    // calculate prices
+                    const subtotal = item.price * orderQuantity;
+                    orderPrices.push(subtotal);
+
+                    const total = orderPrices.reduce((partialSum, a) => partialSum + a, 0);
+
+                    document.querySelector('#orderTotal').textContent = 'Total: ' + total + ' PHP';
+                } else {
+                    alert('Enter quantity');
+                }
             }
+            
+            
+            function payment(event, el) {
 
+                event.preventDefault();
 
-            // calculate total price
-            // process transaction
+                const debit = orderPrices.reduce((partialSum, a) => partialSum + a, 0);
+                const balance = el.elements['myPayment'].value;
+
+                if (balance == debit) {
+                    alert('Thank you for your patronage. Enjoy your meal!');
+                } else if (balance > debit) {
+                    const change = balance - debit;
+                    alert('Your change is: ' + change + ' PHP');
+                } else if (balance < debit) {
+                    alert('Not enough');
+                }
+            }
         </script>
     </body>
 </html>
