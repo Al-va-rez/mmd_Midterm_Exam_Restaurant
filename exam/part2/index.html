@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seaside Sizzle</title>
+        <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/seafood-restaurant-4452716-3689187.png?f=webp&w=256">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <header>
+
+        </header>
+
+
+        <main>
+            <div class="flex flex-nowrap justify-evenly mt-8">
+                
+                <!-- MENU -->
+                <div class="flex flex-col w-[65%] max-h-[60vh] border rounded-md">
+
+                    <!-- Header -->
+                    <div class="bg-gray-300 border-b">MENU</div>
+                    <!-- /Header -->
+                    
+
+                    <!-- Main Content -->
+                    <div id="menu" class="flex flex-wrap justify-center overflow-auto gap-6 p-4">
+
+                        <!-- add items dynamically using jscript -->
+
+                    </div>
+                    <!-- /Main Content -->
+                    
+                </div>
+                <!-- /MENU -->
+
+
+                <!-- INVOICE -->
+                <div class="flex flex-col w-[15%] max-h-[60vh] border rounded-md">
+                    
+                    <!-- Header -->
+                    <div class="bg-gray-300 border-b">Ordered Items</div>
+                    <!-- /Header -->
+
+
+                    <!-- Receipt -->
+                    <div id="receipt" class="flex flex-col overflow-auto items-center space-y-4 py-8 px-4">
+                        
+                        <!-- add items dynamically using jscript -->
+
+                    </div>
+                    <!-- /Receipt -->
+
+
+                    <!-- Footer -->
+                    <div class="mt-auto border-t space-y-4 p-4">
+                        <div id="orderTotal" class="text-2xl">Total: </div>
+                        <form action="#" name="myForm" onsubmit="payment(event, this)" class="space-y-2">
+                            <div class="flex flex-col items-end gap-2">
+                                <input class="w-full border rounded" name="myPayment" type="number" placeholder="Payment" min="1" required>
+                                <button type="submit" class="bg-green-600 rounded-md text-white text-sm px-2 py-1 hover:bg-green-700">Pay!</button>
+                            </div>
+                            
+                        </form>
+                        
+                    </div>
+                    <!-- /Footer -->
+
+                </div>
+                <!-- /INVOICE -->
+
+            </div>
+        </main>
+
+
+        <footer>
+
+        </footer>
+
+
+
+        <script>
+            // Menu item names and prices plus images
+            const menuItems = [
+                {name:'Mini Fish & Chips', price: 169, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Shrimp Tempura Basket', price: 249, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Tuna Sisig', price: 179, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Garlic Butter Mussels', price: 229, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Seafood Lumpia', price: 149, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Spicy Squid Rice Bowl', price: 189, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Bangus Belly Sinigang', price: 199, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'},
+                {name:'Grilled Tilapia with Ensalada', price: 259, image:'https://www.patrickmaese.com/wp-content/uploads/2021/01/Grilled-Lobster-blog-1-500x375.jpg'}
+            ];
+
+            // Create menu
+            for (var i = 0; i < menuItems.length; i++) {
+
+                // menu item container
+                const menuItem = document.createElement('div');
+                menuItem.classList.add('flex', 'flex-col', 'w-[30%]', 'border', 'rounded-md');
+
+                // image
+                const itemImage = document.createElement('img');
+                itemImage.src = menuItems[i].image;
+                itemImage.classList.add('rounded-t');
+
+                // desc
+                const itemDesc = document.createElement('div');
+                itemDesc.classList.add('m-2', 'space-y-2');
+
+                // name
+                const itemName = document.createElement('h1');
+                itemName.textContent = menuItems[i].name;
+                
+                // price
+                const itemPrice = document.createElement('h1');
+                itemPrice.textContent = menuItems[i].price + ' PHP';
+
+                // quantity
+                const itemInput = document.createElement('input')
+                itemInput.classList.add('w-full', 'border', 'rounded');
+                itemInput.type = 'number';
+                itemInput.placeholder = 'Enter how many';
+                itemInput.min = 0;
+
+                // order button
+                const orderItem = document.createElement('div');  // container
+                orderItem.classList.add('flex', 'justify-end');
+                
+                const orderButton = document.createElement('button')  // actual button
+                orderButton.classList.add('bg-blue-600', 'rounded-md', 'text-white', 'text-sm', 'px-3', 'py-2');
+                orderButton.textContent = 'Add to order';
+
+                const orderDetails = menuItems[i];
+                orderButton.onclick = function() {addOrder(orderDetails, itemInput.value)};
+
+
+                // place button inside its container
+                orderItem.appendChild(orderButton);
+
+                // put name, price, quantity, and order button inside item desc
+                itemDesc.appendChild(itemName);
+                itemDesc.appendChild(itemPrice);
+                itemDesc.appendChild(itemInput);
+                itemDesc.appendChild(orderItem);
+
+                // put image and desc inside menu item container
+                menuItem.appendChild(itemImage);
+                menuItem.appendChild(itemDesc);
+
+                // add item to menu
+                document.querySelector('#menu').appendChild(menuItem);
+            }
+
+
+            const orderPrices = [];
+            function addOrder(item, orderQuantity) {
+                const invoice = document.querySelector('#receipt');
+                const newItem = document.createElement('div');
+                const itemName = document.createElement('div');
+                const itemQuanti = document.createElement('div');
+
+                if (orderQuantity > 0) {
+                    // Create text
+                    itemName.appendChild(document.createTextNode(item.name));
+                    itemName.classList.add('text-left', 'text-xl');
+
+                    itemQuanti.appendChild(document.createTextNode('Qty: ' + orderQuantity));
+                    itemQuanti.classList.add('text-right', 'text-lg', 'text-green-600');
+
+                    // Put text in container
+                    newItem.appendChild(itemName);
+                    newItem.appendChild(itemQuanti);
+                    newItem.classList.add('flex', 'flex-col', 'justify-center', 'border', 'rounded-md', 'w-full', 'h-auto', 'p-3');
+
+                    // Add new item
+                    invoice.appendChild(newItem);
+
+
+                    // calculate prices
+                    const subtotal = item.price * orderQuantity;
+                    orderPrices.push(subtotal);
+
+                    const total = orderPrices.reduce((partialSum, a) => partialSum + a, 0);
+
+                    document.querySelector('#orderTotal').textContent = 'Total: ' + total + ' PHP';
+                } else {
+                    alert('Enter quantity');
+                }
+            }
+            
+            
+            function payment(event, el) {
+
+                event.preventDefault();
+
+                const debit = orderPrices.reduce((partialSum, a) => partialSum + a, 0);
+                const balance = el.elements['myPayment'].value;
+
+                if (balance == debit) {
+                    alert('Thank you for your patronage. Enjoy your meal!');
+                } else if (balance > debit) {
+                    const change = balance - debit;
+                    alert('Your change is: ' + change + ' PHP');
+                } else if (balance < debit) {
+                    alert('Not enough');
+                }
+            }
+        </script>
+    </body>
+</html>
