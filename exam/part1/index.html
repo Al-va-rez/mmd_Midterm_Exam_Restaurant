@@ -104,42 +104,53 @@
 
             <!-- Reviews -->
             <section id="reviews" class="h-max w-full py-16">
-                <!-- customer reviews -->
-                <!-- copy previous work -->
-                <!-- blank background -->
 
                 <div class="flex flex-col h-full w-full items-center justify-center gap-8">
 
+                    <!-- Title -->
                     <div class="font-serif text-4xl font-bold uppercase text-red-500">Customer Reviews</div>
+                    <!-- /Title -->
 
+                    <!-- Carousel -->
                     <div id="slideContainer" class="w-[80%] h-auto flex flex-col gap-8 items-center">
+
+                        <!-- Item 1 -->
                         <div class="slide flex flex-col w-[80%] h-auto gap-4 shadow-xl shadow-orange-100 border rounded-xl p-8 text-xl">
                             <div class="italic">
                                 "Affordable seafood that tastes like it came straight from the beach! Loved the grilled tilapia and bangus sinigang. Chill place, super friendly staff."
                             </div>
                             <div class="text-right">— Mara L.</div>
                         </div>
+                        <!-- /Item 1 -->
     
+                        <!-- Item 2 -->
                         <div class="slide hidden flex-col w-[80%] h-auto gap-4 shadow-xl shadow-orange-100 border rounded-xl p-8 text-xl">
                             <div>
                                 "Perfect for family dinners! The shrimp skewers were a hit with the kids, and I couldn’t get enough of the garlic mussels. Great value for money."
                             </div>
                             <div class="text-right">— Jason T.</div>
                         </div>
+                        <!-- /Item 2 -->
     
+                        <!-- Item 3 -->
                         <div class="slide hidden flex-col w-[80%] h-auto gap-4 shadow-xl shadow-orange-100 border rounded-xl p-8 text-xl">
                             <div>
                                 "A hidden gem! I’ve been here three times already. Try the spicy squid rice bowl—it’s seriously addicting. The beachy theme is also super cute!"
                             </div>
                             <div class="text-right">— Rica D.</div>
                         </div>
+                        <!-- /Item 3 -->
     
     
+                        <!-- Slider Buttons -->
                         <div class="flexButton">
                             <button id="prev" class="sliderBtn text-xl font-bold border-2 shadow-xl px-5 py-3 rounded-full transition-all duration-500 ease-in-out hover:text-white hover:bg-red-400 hover:shadow-2xl"><</button>
                             <button id="next" class="sliderBtn text-xl font-bold border-2 shadow-xl px-5 py-3 rounded-full transition-all duration-500 ease-in-out hover:text-white hover:bg-red-400 hover:shadow-2xl">></button>
                         </div>
+                        <!-- /Slider Buttons -->
+
                     </div>
+                    <!-- /Carousel -->
 
                 </div>
 
@@ -195,82 +206,58 @@
                 let prevBtn = document.querySelector("#prev");
                 let slides = document.querySelectorAll(".slide");
 
-                // To keep track which index we're in while switching images
                 let currentIndex = 0;
 
-                // For next button functionality
                 nextBtn.addEventListener("click", function() {
 
-                    // We'll go through each given image from the DOM
                     for (let index = 0; index < slides.length; index++) {
 
-                        // Store its current spot/index of the image 
-                        // to this slide variable
                         let slide = slides[index];
 
-                        // If it's the image currently shown
                         if (slide.classList.contains("flex") === true) {
 
-                            // Move to the next image (since we clicked next)
+                            // Move to next slide
                             currentIndex = index + 1;
 
-                            // Remove 'show' class from the image since
-                            // we don't want it be shown anymore
+                            // Hide current slide
                             slide.classList.remove("flex");
                             slide.classList.add("hidden");
                         }
                     }
 
-                    // If the image is in a valid index, show it by adding 
-                    // the 'show' class to the element's class attribute
+                    // Show slide if valid index
                     if (currentIndex < slides.length) {
                         slides[currentIndex].classList.add("flex");
                         slides[currentIndex].classList.remove("hidden");
-                    } 
-
-                    // If it's not, we go back to the first index, which is zero
-                    // since we reached already the last image
-                    else {  
+                    } else { // else go to first slide (if current slide is the last one)
                         currentIndex = 0;
                         slides[currentIndex].classList.add("flex");
                         slides[currentIndex].classList.remove("hidden");
                     }
                 });
 
-                // We'll go through each given image from the DOM
                 prevBtn.addEventListener('click', function () {
 
-                    // We'll go through each given image from the DOM
                     for (let index = 0; index < slides.length; index++) {
 
-                        // Store its current spot/index of the image 
-                        // to this slide variable
                         let slide = slides[index];
 
-                        // If it's the image currently shown
                         if (slide.classList.contains("flex") === true) {
 
-                            // Move to the previous image (since we clicked previous)
+                            // Move to previous slide
                             currentIndex = index - 1;
 
-                            // Remove 'show' class from the image since
-                            // we don't want it be shown anymore
+                            // Hide current slide
                             slide.classList.remove("flex");
                             slide.classList.add("hidden");
                         }
                     }
 
-                    // If the image is in a valid index, show it by adding 
-                    // the 'show' class to the element's class attribute
+                    // Show slide if valid index
                     if (currentIndex < slides.length && currentIndex > -1) {
                         slides[currentIndex].classList.add("flex");
                         slides[currentIndex].classList.remove("hidden");
-                    } 
-
-                    // If it's not, we go to the very last index, which is four
-                    // in this case to see the last image. If we click previous 
-                    // while currentIndex is zero, we'll see the last image
-                    else {            
+                    } else { // else go to last slide (if current slide is the first one)
                         currentIndex = slides.length - 1;
                         slides[currentIndex].classList.add("flex");
                         slides[currentIndex].classList.remove("hidden");
