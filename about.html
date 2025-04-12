@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seaside Sizzle</title>
+        <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/seafood-restaurant-4452716-3689187.png?f=webp&w=256">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <header class="bg-transparent fixed top-0 z-50 w-screen py-2 transition-all duration-500">
+            <nav class="flex items-center justify-between max-w-screen-xl mx-auto px-7 py-4 transition-all ease-in-out duration-500 bg-white rounded-full shadow-xl">
+
+                <!-- Banner -->
+                <div class="flex items-center space-x-2">
+                    <img class="max-h-12 max-w-auto" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/seafood-restaurant-4452716-3689187.png?f=webp&w=256" alt="">
+                    <div class="text-xl sm:max-2xl:text-base font-bold leading-tight">Seaside<br>Sizzle</div>
+                </div>
+                <!-- /Banner -->
+
+
+                <!-- Nav -->
+                <div class="flex items-center space-x-24 text-2xl sm:max-2xl:text-lg">
+                    <button onclick="location.href='index.html'" class="px-5 py-3 transition-all duration-500 ease-in-out hover:bg-red-500 hover:rounded-full hover:shadow-2xl hover:text-white">
+                        Home
+                    </button>
+                    <button onclick="location.href='#root'" class="px-5 py-3 underline font-bold transition-all duration-500 ease-in-out hover:bg-red-500 hover:rounded-full hover:shadow-2xl hover:text-white">
+                        About
+                    </button>
+                    <button onclick="location.href='menu.html'" class="px-5 py-3 transition-all duration-500 ease-in-out hover:bg-red-500 hover:rounded-full hover:shadow-2xl hover:text-white">
+                        Menu
+                    </button>
+                </div>
+                <!-- /Nav -->
+
+
+                <!-- Misc -->
+                <div class="flex items-center space-x-6 text-2xl text-xl sm:max-2xl:text-base">
+                    <button class="transition-all duration-400 ease-in-out hover:underline">Sign In</button>
+                    <button class="bg-red-400 px-5 py-3 rounded-full text-white transition-all duration-500 ease-in-out hover:bg-red-500 hover:shadow-2xl">Sign Up</button>
+                </div>
+                <!-- /Misc -->
+
+            </nav>
+        </header>
+
+
+        <main>
+            <section id="root" class="bg-[url(https://img.freepik.com/premium-photo/salmon-fresh-raw-salmon-fish-fillet-white-background_745171-438.jpg?w=996)] bg-cover bg-center bg-no-repeat h-screen w-full">
+                
+                <div class="flex flex-col h-full w-full items-center justify-center bg-black/10">
+
+                    <!-- *FOR FUTURE REFERENCE -->
+                    <!-- *Tab buttons and contents could have been created and manipulated (customized, hidden, and displayed) more dynamically using HTML DOM -->
+
+                    <div class="flex flex-col w-[43%] h-[60%] items-center bg-white">
+
+                        <!-- Tabs -->
+                        <div class="flex w-full justify-center font-bold text-3xl sm:max-2xl:text-xl">
+                            <button class="tabButton bg-red-200 hover:bg-red-400 hover:text-white hover:scale-105 border border-black w-[33.3%] py-4 transition-all duration-400 ease-in-out">Mission</button>
+                            <button class="tabButton hover:bg-red-400 hover:text-white hover:scale-105 border border-black w-[33.3%] sm:max-2xl:px-12 py-2 transition-all duration-400 ease-in-out">Vision</button>
+                            <button class="tabButton hover:bg-red-400 hover:text-white hover:scale-105 border border-black w-[33.3%] sm:max-2xl:px-12 py-2 transition-all duration-400 ease-in-out">History</button>
+                        </div>
+                        <!-- /Tabs -->
+                    
+
+                        <!-- Mission -->
+                        <div class="tabContent block flex flex-col items-center gap-12 text-justify p-12 text-2xl sm:max-2xl:text-lg">
+                            <img src="https://www.usatoday.com/gcdn/presto/2022/08/01/USAT/ed8021d2-872d-4b35-bf7e-b1febe3b8ccd-USATSI_16557992.jpg?crop=4773,2685,x0,y117" alt="" class="w-[80%] h-auto rounded-lg shadow-lg">
+                            <div>
+                                To serve fresh, flavorful seafood dishes that bring the taste of the coast to every customer—at prices everyone can enjoy.
+                                We’re here to provide warm service, satisfying meals, and a casual seaside vibe for families, friends, and foodies alike.
+                            </div>
+                        </div>
+                        <!-- /Mission -->
+
+
+                        <!-- Vision -->
+                        <div class="tabContent hidden flex flex-col items-center gap-12 text-justify p-12 text-2xl sm:max-2xl:text-lg">
+                            <img src="https://oaklandside.org/wp-content/uploads/2024/01/MarinaSeafoodBerkeley-EXT.jpg" alt="" class="w-[60%] h-auto rounded-lg shadow-lg">
+                            <div>
+                                To become the go-to seafood destination in every neighborhood, known for quality ingredients, fun atmosphere,
+                                and a sizzling experience that keeps customers coming back.
+                            </div>
+                        </div>
+                        <!-- /Vision -->
+
+
+                        <!-- History -->
+                        <div class="tabContent hidden text-justify p-12 text-2xl sm:max-2xl:text-lg space-y-12 leading-normal">
+                            <div class="text-center font-bold uppercase">The Story Behind Seaside Sizzle</div>
+                            <div>
+                                Seaside Sizzle began as a simple dream by a group of beach-loving food enthusiasts who wanted to create a place where anyone
+                                could enjoy great seafood without breaking the bank. What started as a modest food stall near the coast grew into a cozy seaside-themed
+                                restaurant, where the smell of grilled shrimp and sizzling squid fills the air. <br><br> With recipes inspired by coastal towns across the
+                                Philippines and beyond, Seaside Sizzle combines local flavors with international favorites. Today, it’s a homegrown brand with a big heart,
+                                serving good food with good vibes—just the way the founders envisioned when they first fired up the grill.
+                            </div>
+                        </div>
+                        <!-- /History -->
+
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+
+
+        <footer class="relative bg-black">
+            <div class="flex items-center justify-evenly w-[80%] mx-auto text-white p-12">
+                <div class="text-2xl sm:max-2xl:text-lg font-semibold">
+                    Seaside Sizzle
+                </div>
+                <div class="flex flex-col gap-4 items-center text-lg sm:max-2xl:text-xs">
+                    <div>&#169 All Rights Reserved</div>
+                    <div>Email: seaside.sizzle@fake.com</div>
+                    <div>Open Hours: Weekdays (7:00 AM - 10:00 PM), Weekends (8:00 AM - 8:00 PM)</div>
+                </div>
+                <div class="flex flex-row w-52 gap-6 text-white text-xl sm:max-2xl:text-sm">
+                    <div class="hover:text-gray-400"><a href="">Facebook</a></div>
+                    <div class="hover:text-gray-400"><a href="">Instagram</a></div>
+                    <div class="hover:text-gray-400"><a href="">Twitter</a></div>
+                    <div class="hover:text-gray-400"><a href="">Youtube</a></div>
+                </div>
+            </div>
+        </footer>
+
+
+
+        <script>
+            // Navbar
+                window.addEventListener('scroll',
+                    function() {
+                        const myHeader = document.querySelector('header');
+                        const navbar = document.querySelector('nav');
+
+                        if (window.scrollY > 50) {  // scrolling down the page
+                            myHeader.classList.remove('bg-transparent');
+                            navbar.classList.remove('bg-white', 'rounded-full', 'shadow-xl');
+
+                            myHeader.classList.add('bg-white', 'shadow-md');
+                        } else {  // at the top of page
+                            myHeader.classList.add('bg-transparent');
+                            navbar.classList.add('bg-white', 'rounded-full', 'shadow-xl');
+
+                            myHeader.classList.remove('bg-white', 'shadow-md');
+                        }
+                    }
+                );
+            // Navbar
+
+            // Tabs
+                let buttons = document.querySelectorAll('.tabButton');
+                let tabContents = document.querySelectorAll('.tabContent');
+
+                console.log(buttons.length);
+                console.log(tabContents.length);
+
+                for (let i = 0; i < buttons.length; i++) {
+
+                    // Handle clicking event
+                    buttons[i].addEventListener('click',
+                        function () {
+                            
+                            // Hide all tab contents
+                            for (let j = 0; j < tabContents.length; j++) {
+
+                                tabContents[j].classList.add('hidden');
+
+                                // Remove active class from all buttons
+                                buttons[j].classList.remove('bg-red-200');
+
+                            }
+
+                            // Show the selected tab content
+                            tabContents[i].classList.remove('hidden');
+                            tabContents[i].classList.add('block');
+
+                            // Add active class to the clicked button
+                            buttons[i].classList.add('bg-red-200');
+                        }
+                    );
+                }
+            // Tabs
+        </script>
+    </body>
+</html>

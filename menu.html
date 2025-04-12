@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seaside Sizzle</title>
+        <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/seafood-restaurant-4452716-3689187.png?f=webp&w=256">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <header class="bg-transparent fixed top-0 z-50 w-screen py-2 transition-all duration-500">
+            <nav class="flex items-center justify-between max-w-screen-xl mx-auto px-7 py-4 transition-all ease-in-out duration-500 bg-white rounded-full shadow-xl">
+
+                <!-- Banner -->
+                <div class="flex items-center space-x-2">
+                    <img class="max-h-12 max-w-auto" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/seafood-restaurant-4452716-3689187.png?f=webp&w=256" alt="">
+                    <div class="text-xl sm:max-2xl:text-base font-bold leading-tight">Seaside<br>Sizzle</div>
+                </div>
+                <!-- /Banner -->
+
+
+                <!-- Nav -->
+                <div class="flex items-center space-x-24 text-2xl sm:max-2xl:text-lg">
+                    <button onclick="location.href='index.html'" class="px-5 py-3 transition-all duration-500 ease-in-out hover:bg-red-500 hover:rounded-full hover:shadow-2xl hover:text-white">
+                        Home
+                    </button>
+                    <button onclick="location.href='about.html'" class="px-5 py-3 transition-all duration-500 ease-in-out hover:bg-red-500 hover:rounded-full hover:shadow-2xl hover:text-white">
+                        About
+                    </button>
+                    <button onclick="location.href='#root'" class="px-5 py-3 underline font-bold transition-all duration-500 ease-in-out hover:bg-red-500 hover:rounded-full hover:shadow-2xl hover:text-white">
+                        Menu
+                    </button>
+                </div>
+                <!-- /Nav -->
+
+
+                <!-- Misc -->
+                <div class="flex items-center space-x-6 text-2xl text-xl sm:max-2xl:text-base">
+                    <button class="transition-all duration-400 ease-in-out hover:underline">Sign In</button>
+                    <button class="bg-red-400 px-5 py-3 rounded-full text-white transition-all duration-500 ease-in-out hover:bg-red-500 hover:shadow-2xl">Sign Up</button>
+                </div>
+                <!-- /Misc -->
+
+            </nav>
+        </header>
+
+
+        <main>
+            <!-- MENU -->
+            <section id="root" class="bg-[url(https://img.freepik.com/free-photo/top-view-fresh-seafood-table_23-2148290490.jpg?t=st=1744420316~exp=1744423916~hmac=36fb46f68b93ad34e6d531fda607bf8ebfcfa540fd96cd366b8df860a0e34905&w=996)] bg-cover bg-center bg-no-repeat h-auto w-full">
+
+                <div class="flex flex-col h-auto w-full items-center justify-center bg-black/20 py-36">
+
+                    <div class="flex flex-col w-[65%] h-[auto] border rounded-md bg-white">
+
+                        <!-- Header -->
+                        <div class="bg-red-500 border-b text-center font-bold text-5xl text-white py-6">MENU</div>
+                        <!-- /Header -->
+                        
+
+                        <!-- Main Content -->
+                        <div id="menu" class="flex flex-wrap justify-center gap-x-8 gap-y-16 px-4 py-12">
+
+                            <!-- add items dynamically using jscript -->
+
+                        </div>
+                        <!-- /Main Content -->
+                        
+                    </div>
+
+                </div>
+
+                
+            </section>
+            <!-- /MENU -->
+        </main>
+
+
+        <footer class="relative bg-black">
+            <div class="flex items-center justify-evenly w-[80%] mx-auto text-white p-12">
+                <div class="text-2xl sm:max-2xl:text-lg font-semibold">
+                    Seaside Sizzle
+                </div>
+                <div class="flex flex-col gap-4 items-center text-lg sm:max-2xl:text-xs">
+                    <div>&#169 All Rights Reserved</div>
+                    <div>Email: seaside.sizzle@fake.com</div>
+                    <div>Open Hours: Weekdays (7:00 AM - 10:00 PM), Weekends (8:00 AM - 8:00 PM)</div>
+                </div>
+                <div class="flex flex-row w-52 gap-6 text-white text-xl sm:max-2xl:text-sm">
+                    <div class="hover:text-gray-400"><a href="">Facebook</a></div>
+                    <div class="hover:text-gray-400"><a href="">Instagram</a></div>
+                    <div class="hover:text-gray-400"><a href="">Twitter</a></div>
+                    <div class="hover:text-gray-400"><a href="">Youtube</a></div>
+                </div>
+            </div>
+        </footer>
+
+
+
+        <script>
+            // Navbar
+                window.addEventListener('scroll',
+                    function() {
+                        const myHeader = document.querySelector('header');
+                        const navbar = document.querySelector('nav');
+
+                        if (window.scrollY > 50) {  // scrolling down the page
+                            myHeader.classList.remove('bg-transparent');
+                            navbar.classList.remove('bg-white', 'rounded-full', 'shadow-xl');
+
+                            myHeader.classList.add('bg-white', 'shadow-md');
+                        } else {  // at the top of page
+                            myHeader.classList.add('bg-transparent');
+                            navbar.classList.add('bg-white', 'rounded-full', 'shadow-xl');
+
+                            myHeader.classList.remove('bg-white', 'shadow-md');
+                        }
+                    }
+                );
+            // Navbar
+
+
+            // Menu
+                // Menu item names and prices plus images
+                const menuItems = [
+                    {
+                        name:'Mini Fish & Chips',
+                        desc:'Half-portion of crispy battered white fish with fries and tartar dip.',
+                        price: 60,
+                        image:'https://img.freepik.com/premium-photo/isolated-portion-fried-fish-chips_219193-10402.jpg?w=740'
+                    },
+                    {
+                        name:'Shrimp Tempura',
+                        desc:'Lightly battered shrimp, fried until golden, served with sweet chili sauce.',
+                        price: 40,
+                        image:'https://img.freepik.com/premium-photo/mouthwatering-veggie-tempura-isolated-white-background_787273-66676.jpg?w=740'
+                    },
+                    {
+                        name:'Tuna Sisig',
+                        desc:'Sizzling chopped tuna with onions, chili, and creamy mayo on a hot plate.',
+                        price: 70,
+                        image:'https://img.freepik.com/premium-photo/picture-larb_871710-59586.jpg?w=740'
+                    },
+                    {
+                        name:'Garlic Butter Mussels',
+                        desc:'Steamed mussels tossed in garlic butter sauce, served with toasted bread.',
+                        price: 30,
+                        image:'https://img.freepik.com/premium-photo/plate-mussels-creamy-sauce-accompanied-by-toasted-bread_658005-43732.jpg?w=740'
+                    },
+                    {
+                        name:'Seafood Lumpia',
+                        desc:'Crispy spring rolls stuffed with crab, shrimp, and veggies, served with spiced vinegar dip.',
+                        price: 50,
+                        image:'https://img.freepik.com/premium-photo/delicious-spring-rolls-with-dipping-sauce_1057059-2320.jpg?w=740'
+                    },
+                    {
+                        name:'Spicy Squid Rice Bowl',
+                        desc:'Tender squid rings stir-fried in a spicy glaze, served over garlic rice.',
+                        price: 80,
+                        image:'https://img.freepik.com/premium-photo/japanese-dish-photograph-isolated-plain-background_941097-56981.jpg?w=740'
+                    },
+                    {
+                        name:'Bangus Belly Sinigang',
+                        desc:'Tamarind-based soup with milkfish belly, kangkong, radish, and eggplant.',
+                        price: 90,
+                        image:'https://img.freepik.com/premium-photo/isolated-bowl-salmon-spinach-soup_219193-9828.jpg?w=740'
+                    },
+                    {
+                        name:'Grilled Tilapia with Ensalada',
+                        desc:'Fresh tilapia grilled and served with tomato salad and short grain rice.',
+                        price: 120,
+                        image:'https://img.freepik.com/premium-photo/yummy-baked-cod-with-mediterranean-isolated-white-background_787273-74162.jpg?w=740'
+                    }
+                ];
+
+                // Create menu
+                for (var i = 0; i < menuItems.length; i++) {
+
+                    // menu item container
+                    const menuItem = document.createElement('div');
+                    menuItem.classList.add(
+                        'flex',
+                        'flex-col',
+                        'items-center',
+                        'w-[30%]',
+                        'border-2',
+                        'border-gray-200',
+                        'transition',
+                        'transform',
+                        'duration-700',
+                        'hover:shadow-xl',
+                        'hover:scale-105',
+                        'p-4',
+                        'rounded-lg'
+                    );
+
+                    // image
+                    const itemImage = document.createElement('img');
+                    itemImage.src = menuItems[i].image;
+                    itemImage.classList.add('rounded-md', 'transform', 'transition', 'duration-300', 'hover:scale-105');
+
+                    // details
+                    const itemDetails = document.createElement('div');
+                    itemDetails.classList.add('m-6', 'space-y-4');
+
+                    // name
+                    const itemName = document.createElement('div');
+                    itemName.textContent = menuItems[i].name;
+                    itemName.classList.add('text-xl', 'sm:max-2xl:text-lg', 'text-center', 'font-medium');
+
+                    // desc
+                    const itemDesc = document.createElement('div');
+                    itemDesc.textContent = menuItems[i].desc;
+                    itemDesc.classList.add('text-xl', 'sm:max-2xl:text-lg', 'text-center', 'font-light', 'px-2');
+                    
+                    // price
+                    const itemPrice = document.createElement('div');
+                    itemPrice.textContent = menuItems[i].price + ' PHP';
+                    itemPrice.classList.add('text-2xl', 'sm:max-2xl:text-xl', 'font-bold', 'text-center');
+
+
+                    // put name, price, quantity, and order button inside item desc
+                    itemDetails.appendChild(itemName);
+                    itemDetails.appendChild(itemDesc);
+                    itemDetails.appendChild(itemPrice);
+
+                    // put image and desc inside menu item container
+                    menuItem.appendChild(itemImage);
+                    menuItem.appendChild(itemDetails);
+
+                    // add item to menu
+                    document.querySelector('#menu').appendChild(menuItem);
+                }
+            // Menu
+        </script>
+    </body>
+</html>
